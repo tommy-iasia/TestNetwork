@@ -5,9 +5,9 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
-public class Client {
+public class Receiver {
 
-    public static void run(String localHost, String groupHost, int port) throws IOException {
+    public static void run(String localHost, String groupHost, int port, int time) throws IOException {
         System.out.println("start");
 
         try (var channel = DatagramChannel.open(StandardProtocolFamily.INET)) {
@@ -26,7 +26,7 @@ public class Client {
             System.out.println("run");
 
             var startTime = System.currentTimeMillis();
-            var endTime = startTime + 5_000;
+            var endTime = startTime + time;
 
             var buffer = ByteBuffer.allocateDirect(10 * 1024 * 1024);
 
@@ -59,6 +59,7 @@ public class Client {
         var localHost = args.length >= 1 ? args[0] : "10.112.125.146";
         var groupHost = args.length >= 2 ? args[1] : "239.1.1.1";
         var port = args.length >= 3 ? Integer.valueOf(args[2]) : 51000;
-        run(localHost, groupHost, port);
+        var time = args.length >= 4 ? Integer.valueOf(args[3]) : 5000;
+        run(localHost, groupHost, port, time);
     }
 }
