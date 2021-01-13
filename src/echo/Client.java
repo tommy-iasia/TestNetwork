@@ -24,13 +24,13 @@ public class Client {
 
             System.out.print("writing... ");
             var write = channel.write(buffer);
-            System.out.println(write);
+            System.out.println(write + "B");
 
             buffer.clear();
 
             System.out.print("reading... ");
             var read = channel.read(buffer);
-            System.out.println(read);
+            System.out.println(read + "B");
 
             buffer.flip();
             for (var i = 0; i < read; i++) {
