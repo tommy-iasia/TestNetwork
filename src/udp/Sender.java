@@ -90,7 +90,7 @@ public class Sender {
         System.out.println("end");
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
         var host = args.length >= 1 ? args[0] : "239.1.1.1";
         var port = args.length >= 2 ? Integer.parseInt(args[1]) : 51000;
         var time = args.length >= 3 ? Integer.parseInt(args[2]) : 3000;
