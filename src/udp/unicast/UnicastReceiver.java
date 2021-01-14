@@ -1,13 +1,13 @@
-package udp.multicast;
+package udp.unicast;
 
 import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
-public class Receiver {
+public class UnicastReceiver {
 
-    public static void run(String localHost, String groupHost, int port, int time) throws IOException {
+    public static void run(int port, int time) throws IOException {
         System.out.println("start");
 
         try (var channel = DatagramChannel.open(StandardProtocolFamily.INET)) {
@@ -16,12 +16,6 @@ public class Receiver {
 
             var portAddress = new InetSocketAddress(port);
             channel.bind(portAddress);
-
-            var localAddress = InetAddress.getByName(localHost);
-            var network = NetworkInterface.getByInetAddress(localAddress);
-
-            var groupAddress = InetAddress.getByName(groupHost);
-            channel.join(groupAddress, network);
 
             System.out.println("receive");
 
@@ -56,10 +50,8 @@ public class Receiver {
     }
 
     public static void main(String[] args) throws IOException {
-        var localHost = args.length >= 1 ? args[0] : "10.112.125.146";
-        var groupHost = args.length >= 2 ? args[1] : "239.1.1.1";
-        var port = args.length >= 3 ? Integer.valueOf(args[2]) : 51000;
-        var time = args.length >= 4 ? Integer.valueOf(args[3]) : 7000;
-        run(localHost, groupHost, port, time);
+        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51000;
+        var time = args.length >= 2 ? Integer.valueOf(args[1]) : 7000;
+        run(port, time);
     }
 }
