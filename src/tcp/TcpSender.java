@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutionException;
 
 public class TcpSender {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-        var host = args.length >= 1 ? args[0] : "127.0.0.1";
+        var host = args.length >= 1 ? args[0] : "10.112.125.186";
         var port = args.length >= 2 ? Integer.parseInt(args[1]) : 51000;
         var time = args.length >= 3 ? Integer.parseInt(args[2]) : 3000;
         var rate = args.length >= 4 ? Integer.parseInt(args[3]) : 21 * 1024 * 1024 / 8;
@@ -20,7 +20,8 @@ public class TcpSender {
 
         try (var channel = AsynchronousSocketChannel.open()) {
             var address = new InetSocketAddress(host, port);
-            channel.connect(address);
+            var connect = channel.connect(address);
+            connect.get();
 
             var payload = ByteBuffer.allocateDirect(32);
             for (var i = 0; i < payload.limit(); i++) {
@@ -66,6 +67,8 @@ public class TcpSender {
                     break;
                 }
             }
+
+            channel.close();
 
             var usedTime = System.nanoTime() - startTime;
             System.out.println("time: "
