@@ -9,8 +9,8 @@ public class UdpMulticastReceiver {
     public static void main(String[] args) throws IOException {
         var localHost = args.length >= 1 ? args[0] : "10.112.125.146";
         var groupHost = args.length >= 2 ? args[1] : "239.1.1.1";
-        var port = args.length >= 3 ? Integer.valueOf(args[2]) : 51000;
-        var time = args.length >= 4 ? Integer.valueOf(args[3]) : 3500;
+        var port = args.length >= 3 ? Integer.parseInt(args[2]) : 51000;
+        var time = args.length >= 4 ? Integer.parseInt(args[3]) : 3500;
 
         run(localHost, groupHost, port, time);
     }

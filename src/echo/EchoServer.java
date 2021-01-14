@@ -7,7 +7,7 @@ import java.nio.channels.ServerSocketChannel;
 
 public class EchoServer {
     public static void main(String[] args) throws IOException {
-        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51000;
+        var port = args.length >= 1 ? Integer.parseInt(args[0]) : 51000;
         run(port);
     }
 

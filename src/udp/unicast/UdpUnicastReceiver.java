@@ -7,8 +7,8 @@ import java.nio.channels.DatagramChannel;
 
 public class UdpUnicastReceiver {
     public static void main(String[] args) throws IOException {
-        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51000;
-        var time = args.length >= 2 ? Integer.valueOf(args[1]) : 3500;
+        var port = args.length >= 1 ? Integer.parseInt(args[0]) : 51000;
+        var time = args.length >= 2 ? Integer.parseInt(args[1]) : 3500;
         run(port, time);
     }
 

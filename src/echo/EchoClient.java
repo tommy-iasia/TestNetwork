@@ -8,7 +8,7 @@ import java.nio.channels.SocketChannel;
 public class EchoClient {
     public static void main(String[] args) throws IOException {
         var host = args.length >= 1 ? args[0] : "127.0.0.1";
-        var port = args.length >= 2 ? Integer.valueOf(args[1]) : 51000;
+        var port = args.length >= 2 ? Integer.parseInt(args[1]) : 51000;
         run(host, port);
     }
 
