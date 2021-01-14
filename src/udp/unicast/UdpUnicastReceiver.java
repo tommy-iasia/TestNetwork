@@ -22,8 +22,8 @@ public class UdpUnicastReceiver {
             var startTime = System.currentTimeMillis();
             var endTime = startTime + time;
 
-            var count = 0;
             var length = 0;
+            var count = 0;
 
             var firstTime = 0L;
             var lastTime = 0L;
@@ -51,10 +51,10 @@ public class UdpUnicastReceiver {
                 }
             }
 
-            var receiveTime = lastTime - firstTime;
+            var usedTime = lastTime - firstTime;
             System.out.println("time: "
-                    + receiveTime / 1000 + "s "
-                    + "/ " + receiveTime + "ms");
+                    + usedTime / 1000 + "s "
+                    + "/ " + usedTime + "ms");
 
             System.out.println("payload: "
                     + length / 1024 / 1024 + "MB "
