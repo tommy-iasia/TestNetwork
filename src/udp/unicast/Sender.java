@@ -1,4 +1,4 @@
-package udp;
+package udp.unicast;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -20,7 +20,7 @@ public class Sender {
             }
             payload.flip();
 
-            System.out.println("run");
+            System.out.println("send");
 
             var startTime = System.nanoTime();
             var endTime = startTime + time * 1_000_000L;
@@ -91,7 +91,7 @@ public class Sender {
     }
 
     public static void main(String[] args) throws IOException {
-        var host = args.length >= 1 ? args[0] : "239.1.1.1";
+        var host = args.length >= 1 ? args[0] : "10.112.125.146";
         var port = args.length >= 2 ? Integer.parseInt(args[1]) : 51000;
         var time = args.length >= 3 ? Integer.parseInt(args[2]) : 3000;
         var bandwidth = args.length >= 4 ? Integer.parseInt(args[3]) : 21 * 1024 * 1024 / 8;

@@ -1,4 +1,4 @@
-package udp;
+package udp.multicast;
 
 import java.io.IOException;
 import java.net.*;
@@ -23,7 +23,7 @@ public class Receiver {
             var groupAddress = InetAddress.getByName(groupHost);
             channel.join(groupAddress, network);
 
-            System.out.println("run");
+            System.out.println("receive");
 
             var startTime = System.currentTimeMillis();
             var endTime = startTime + time;
