@@ -11,7 +11,7 @@ public class EchoClient {
         System.out.println("start");
 
         try (var channel = SocketChannel.open()) {
-            System.out.println("connecting...");
+            System.out.println("connect");
 
             var address = new InetSocketAddress(host, port);
             channel.connect(address);
@@ -22,13 +22,13 @@ public class EchoClient {
             buffer.put((byte) 3);
             buffer.flip();
 
-            System.out.print("writing... ");
+            System.out.print("write: ");
             var write = channel.write(buffer);
             System.out.println(write + "B");
 
             buffer.clear();
 
-            System.out.print("reading... ");
+            System.out.print("read: ");
             var read = channel.read(buffer);
             System.out.println(read + "B");
 
