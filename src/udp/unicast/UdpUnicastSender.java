@@ -91,7 +91,7 @@ public class UdpUnicastSender {
     }
 
     public static void main(String[] args) throws IOException {
-        var host = args.length >= 1 ? args[0] : "10.112.125.146";
+        var host = args.length >= 1 ? args[0] : "127.0.0.1";
         var port = args.length >= 2 ? Integer.parseInt(args[1]) : 51000;
         var time = args.length >= 3 ? Integer.parseInt(args[2]) : 3000;
         var bandwidth = args.length >= 4 ? Integer.parseInt(args[3]) : 21 * 1024 * 1024 / 8;

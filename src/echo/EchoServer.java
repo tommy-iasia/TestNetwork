@@ -32,7 +32,7 @@ public class EchoServer {
     }
 
     public static void main(String[] args) throws IOException {
-        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51011;
+        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51000;
         run(port);
     }
 }
