@@ -18,7 +18,7 @@ public class EchoServer {
             var address = new InetSocketAddress(port);
             server.bind(address);
 
-            System.out.println("accepting...");
+            System.out.println("accept");
 
             try (var socket = server.accept()) {
                 var buffer = ByteBuffer.allocate(100);
