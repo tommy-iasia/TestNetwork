@@ -14,7 +14,7 @@ public class EchoServer {
             var address = new InetSocketAddress(port);
             server.bind(address);
 
-            System.out.println("accepting...");
+            System.out.println("accept");
 
             try (var socket = server.accept()) {
                 var buffer = ByteBuffer.allocate(100);
@@ -32,7 +32,7 @@ public class EchoServer {
     }
 
     public static void main(String[] args) throws IOException {
-        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51011;
+        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51000;
         run(port);
     }
 }
