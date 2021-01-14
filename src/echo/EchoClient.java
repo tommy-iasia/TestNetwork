@@ -7,6 +7,12 @@ import java.nio.channels.SocketChannel;
 
 public class EchoClient {
 
+    public static void main(String[] args) throws IOException {
+        var host = args.length >= 1 ? args[0] : "127.0.0.1";
+        var port = args.length >= 2 ? Integer.valueOf(args[1]) : 51000;
+        run(host, port);
+    }
+
     public static void run(String host, int port) throws IOException {
         System.out.println("start");
 
@@ -32,6 +38,7 @@ public class EchoClient {
             var read = channel.read(buffer);
             System.out.println(read + "B");
 
+            System.out.print("bytes: ");
             buffer.flip();
             for (var i = 0; i < read; i++) {
                 var value = buffer.get();
@@ -41,11 +48,5 @@ public class EchoClient {
         }
 
         System.out.println("stop");
-    }
-
-    public static void main(String[] args) throws IOException {
-        var host = args.length >= 1 ? args[0] : "10.112.125.186";
-        var port = args.length >= 2 ? Integer.valueOf(args[1]) : 51011;
-        run(host, port);
     }
 }
