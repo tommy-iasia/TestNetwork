@@ -22,19 +22,39 @@ public class UdpUnicastReceiver {
             var startTime = System.currentTimeMillis();
             var endTime = startTime + time;
 
-            var buffer = ByteBuffer.allocateDirect(10 * 1024 * 1024);
-
             var count = 0;
             var length = 0;
 
-            while (System.currentTimeMillis() < endTime) {
+            var firstTime = 0L;
+            var lastTime = 0L;
+
+            var buffer = ByteBuffer.allocateDirect(10 * 1024 * 1024);
+
+            while (true) {
+                var currentTime = System.currentTimeMillis();
+
                 if (channel.receive(buffer) != null) {
                     length += buffer.position();
                     count++;
 
+                    if (firstTime <= 0) {
+                        firstTime = currentTime;
+                    }
+
+                    lastTime = currentTime;
+
                     buffer.clear();
                 }
+
+                if (currentTime >= endTime) {
+                    break;
+                }
             }
+
+            var receiveTime = lastTime - firstTime;
+            System.out.println("time: "
+                    + receiveTime / 1000 + "s "
+                    + "/ " + receiveTime + "ms");
 
             System.out.println("payload: "
                     + length / 1024 / 1024 + "MB "
