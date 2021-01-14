@@ -5,7 +5,7 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
-public class MulticastReceiver {
+public class UdpMulticastReceiver {
 
     public static void run(String localHost, String groupHost, int port, int time) throws IOException {
         System.out.println("start");
