@@ -7,6 +7,13 @@ import java.nio.channels.AsynchronousSocketChannel;
 import java.util.concurrent.ExecutionException;
 
 public class TcpSender {
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
+        var host = args.length >= 1 ? args[0] : "127.0.0.1";
+        var port = args.length >= 2 ? Integer.parseInt(args[1]) : 51000;
+        var time = args.length >= 3 ? Integer.parseInt(args[2]) : 3000;
+        var rate = args.length >= 4 ? Integer.parseInt(args[3]) : 21 * 1024 * 1024 / 8;
+        run(host, port, time, rate);
+    }
 
     public static void run(String host, int port, int time, long rate) throws IOException, ExecutionException, InterruptedException {
         System.out.println("start");
@@ -88,13 +95,5 @@ public class TcpSender {
         }
 
         System.out.println("end");
-    }
-
-    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-        var host = args.length >= 1 ? args[0] : "239.1.1.1";
-        var port = args.length >= 2 ? Integer.parseInt(args[1]) : 51000;
-        var time = args.length >= 3 ? Integer.parseInt(args[2]) : 3000;
-        var rate = args.length >= 4 ? Integer.parseInt(args[3]) : 21 * 1024 * 1024 / 8;
-        run(host, port, time, rate);
     }
 }

@@ -6,6 +6,11 @@ import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
 public class UdpUnicastReceiver {
+    public static void main(String[] args) throws IOException {
+        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51000;
+        var time = args.length >= 2 ? Integer.valueOf(args[1]) : 7000;
+        run(port, time);
+    }
 
     public static void run(int port, int time) throws IOException {
         System.out.println("start");
@@ -67,11 +72,5 @@ public class UdpUnicastReceiver {
         }
 
         System.out.println("stop");
-    }
-
-    public static void main(String[] args) throws IOException {
-        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51000;
-        var time = args.length >= 2 ? Integer.valueOf(args[1]) : 7000;
-        run(port, time);
     }
 }

@@ -7,6 +7,11 @@ import java.nio.channels.AsynchronousServerSocketChannel;
 import java.util.concurrent.ExecutionException;
 
 public class TcpReceiver {
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
+        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51000;
+        var time = args.length >= 2 ? Integer.valueOf(args[1]) : 7000;
+        run(port, time);
+    }
 
     public static void run(int port, int time) throws IOException, ExecutionException, InterruptedException {
         System.out.println("start");
@@ -68,11 +73,5 @@ public class TcpReceiver {
         }
 
         System.out.println("end");
-    }
-
-    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-        var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51000;
-        var time = args.length >= 2 ? Integer.valueOf(args[1]) : 7000;
-        run(port, time);
     }
 }
