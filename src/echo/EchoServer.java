@@ -5,7 +5,7 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 
-public class Server {
+public class EchoServer {
 
     public static void run(int port) throws IOException {
         System.out.println("start");
