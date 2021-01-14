@@ -44,8 +44,8 @@ public class EchoClient {
     }
 
     public static void main(String[] args) throws IOException {
-        var host = args.length >= 1 ? args[0] : "10.112.125.186";
-        var port = args.length >= 2 ? Integer.valueOf(args[1]) : 51011;
+        var host = args.length >= 1 ? args[0] : "127.0.0.1";
+        var port = args.length >= 2 ? Integer.valueOf(args[1]) : 51000;
         run(host, port);
     }
 }
