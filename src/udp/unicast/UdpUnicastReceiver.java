@@ -8,7 +8,7 @@ import java.nio.channels.DatagramChannel;
 public class UdpUnicastReceiver {
     public static void main(String[] args) throws IOException {
         var port = args.length >= 1 ? Integer.valueOf(args[0]) : 51000;
-        var time = args.length >= 2 ? Integer.valueOf(args[1]) : 7000;
+        var time = args.length >= 2 ? Integer.valueOf(args[1]) : 3500;
         run(port, time);
     }
 
@@ -23,9 +23,6 @@ public class UdpUnicastReceiver {
             channel.bind(portAddress);
 
             System.out.println("receive");
-
-            var startTime = System.currentTimeMillis();
-            var endTime = startTime + time;
 
             var length = 0;
             var count = 0;
@@ -43,6 +40,7 @@ public class UdpUnicastReceiver {
                     count++;
 
                     if (firstTime <= 0) {
+                        System.out.println("first");
                         firstTime = currentTime;
                     }
 
@@ -51,8 +49,10 @@ public class UdpUnicastReceiver {
                     buffer.clear();
                 }
 
-                if (currentTime >= endTime) {
-                    break;
+                if (firstTime > 0) {
+                    if (currentTime - firstTime >= time) {
+                        break;
+                    }
                 }
             }
 

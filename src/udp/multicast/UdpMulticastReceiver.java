@@ -10,7 +10,8 @@ public class UdpMulticastReceiver {
         var localHost = args.length >= 1 ? args[0] : "10.112.125.146";
         var groupHost = args.length >= 2 ? args[1] : "239.1.1.1";
         var port = args.length >= 3 ? Integer.valueOf(args[2]) : 51000;
-        var time = args.length >= 4 ? Integer.valueOf(args[3]) : 7000;
+        var time = args.length >= 4 ? Integer.valueOf(args[3]) : 3500;
+
         run(localHost, groupHost, port, time);
     }
 
@@ -32,9 +33,6 @@ public class UdpMulticastReceiver {
 
             System.out.println("receive");
 
-            var startTime = System.currentTimeMillis();
-            var endTime = startTime + time;
-
             var count = 0;
             var length = 0;
 
@@ -51,6 +49,7 @@ public class UdpMulticastReceiver {
                     count++;
 
                     if (firstTime <= 0) {
+                        System.out.println("first");
                         firstTime = currentTime;
                     }
 
@@ -59,8 +58,10 @@ public class UdpMulticastReceiver {
                     buffer.clear();
                 }
 
-                if (currentTime >= endTime) {
-                    break;
+                if (firstTime > 0) {
+                    if (currentTime - firstTime >= time) {
+                        break;
+                    }
                 }
             }
 
@@ -79,6 +80,6 @@ public class UdpMulticastReceiver {
                     + "/ " + count + "p");
         }
 
-        System.out.println("stop");
+        System.out.println("end");
     }
 }
